@@ -24,26 +24,29 @@ function do_checks {
 
 export VERSION=$(cat VERSION)
 export BUILD_DIR=$HOME/rpmbuild
+export BUILD_SPEC=$BUILD_DIR/SPECS/prometheus-lustre-exporter.spec
 export PKG_DIR=prometheus-lustre-exporter-$VERSION
 
-make build
-
-sed -i "s/VERSION/$(cat VERSION)/" rpm/prometheus-lustre-exporter.spec
 mkdir -p $BUILD_DIR/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
 mkdir -p $BUILD_DIR/SOURCES/$PKG_DIR/usr/bin
 mkdir -p $BUILD_DIR/SOURCES/$PKG_DIR/usr/lib/systemd/system
 mkdir -p $BUILD_DIR/SOURCES/$PKG_DIR/etc/sysconfig
 mkdir -p $BUILD_DIR/SOURCES/$PKG_DIR/etc/sudoers.d
 mkdir -p $BUILD_DIR/SOURCES/$PKG_DIR/var/log/prometheus-lustre-exporter
-cp rpm/prometheus-lustre-exporter.spec $BUILD_DIR/SPECS/
+
+make build
+
+sed "s/VERSION/$(cat VERSION)/" rpm/prometheus-lustre-exporter.spec > $BUILD_SPEC
+
 cp systemd/prometheus-lustre-exporter.service $BUILD_DIR/SOURCES/$PKG_DIR/usr/lib/systemd/system/
 cp systemd/prometheus-lustre-exporter.options $BUILD_DIR/SOURCES/$PKG_DIR/etc/sysconfig/
 cp sudoers/prometheus-lustre-exporter $BUILD_DIR/SOURCES/$PKG_DIR/etc/sudoers.d/
 cp lustre_exporter $BUILD_DIR/SOURCES/$PKG_DIR/usr/bin/
+
 cd $BUILD_DIR/SOURCES
 tar -czvf $PKG_DIR.tar.gz $PKG_DIR
 cd $BUILD_DIR
 echo build dir is $BUILD_DIR
 ls -la $BUILD_DIR/SOURCES
-rpmbuild -ba  $BUILD_DIR/SPECS/prometheus-lustre-exporter.spec
 
+rpmbuild -ba $BUILD_SPEC
