@@ -107,6 +107,12 @@ Since the LNET metrics are currently exported based on the [DebugFS](https://doc
 
 To export that metrics running the exporter as Systemd service as `root` user, the default user option `prometheus` must be changed in the [service file](systemd/prometheus-lustre-exporter.service).
 
+## Grafana Dashboards
+
+Example dashboards for [Grafana](https://grafana.com/) are provided under the [dashboards](dashboards) directroy.
+
+> It is highly recommended to also install the [Prometheus Node Exporter](https://github.com/prometheus/node_exporter) to get a complete view within the provided dashboards.
+
 ## Troubleshooting
 
 In the event that you encounter issues with specific metrics (especially on versions of Lustre older than 2.12), please try disabling those specific troublesome metrics using the documented collector flags in the 'disabled' or 'core' state. Users have encountered bugs within Lustre where specific sysfs and procfs files miscommunicate their sizes, causing read calls to fail.
