@@ -26,7 +26,7 @@ import (
 var (
 	lctlGetParamArgs                  = []string{"lctl", "get_param"}
 	changelogTargetRegexPattern       = regexp.MustCompile(`mdd.([\w\d-]+-MDT[\d]+).changelog_users=`)
-	changelogCurrentIndexRegexPattern = regexp.MustCompile(`current index: (\d+)`)
+	changelogCurrentIndexRegexPattern = regexp.MustCompile(`(current_index:|current index:)\s*(\d+(\.\d+)?)`)
 	changelogUserRegexPattern         = regexp.MustCompile(`(?ms:(cl\d+)\s+(\d+) \((\d+)\))`)
 )
 
@@ -56,8 +56,8 @@ func regexCaptureChangelogTarget(textToMatch string) (string, error) {
 func regexCaptureChangelogCurrentIndex(textToMatch string) (float64, error) {
 	matchedCurrentIndex := changelogCurrentIndexRegexPattern.FindStringSubmatch(textToMatch)
 	if matchedCurrentIndex != nil {
-		if len(matchedCurrentIndex) == 2 {
-			currentIndex, err := strconv.ParseFloat(matchedCurrentIndex[1], 64)
+		if len(matchedCurrentIndex) >= 3 {
+			currentIndex, err := strconv.ParseFloat(matchedCurrentIndex[2], 64)
 			if err != nil {
 				return -1, err
 			}
@@ -66,7 +66,6 @@ func regexCaptureChangelogCurrentIndex(textToMatch string) (float64, error) {
 	}
 	return -1, fmt.Errorf("no current index found for changelogs")
 }
-
 func regexCaptureChangelogUser(textToMatch string) [][]string {
 	return changelogUserRegexPattern.FindAllStringSubmatch(textToMatch, -1)
 
