@@ -67,6 +67,12 @@ func (s *LustreSysFsSource) generateOSTMetricTemplates(filter string) {
 			{"precreate_batch", "precreate_batch", "Maximum number of objects that can be included in a single transaction", gaugeMetric, false, extended},
 			{"soft_sync_limit", "soft_sync_limit", "Number of RPCs necessary before triggering a sync", gaugeMetric, false, extended},
 			{"sync_journal", "sync_journal_enabled", "Binary indicator as to whether or not the journal is set for asynchronous commits", gaugeMetric, false, extended},
+			{"blocksize", "blocksize_bytes", "Filesystem block size in bytes", gaugeMetric, false, core},
+			{"filesfree", "inodes_free", "The number of inodes (objects) available", gaugeMetric, false, core},
+			{"filestotal", "inodes_maximum", "The maximum number of inodes (objects) the filesystem can hold", gaugeMetric, false, core},
+			{"kbytesfree", "free_kibibytes", "Number of kibibytes free in the pool", gaugeMetric, false, core},
+			{"kbytesavail", "available_kibibytes", "Number of kibibytes readily available in the pool", gaugeMetric, false, core},
+			{"kbytestotal", "capacity_kibibytes", "Capacity of the pool in kibibytes", gaugeMetric, false, core},
 		},
 		"ldlm/namespaces/filter-*": {
 			{"lock_count", "lock_count", "Number of locks", gaugeMetric, false, extended},

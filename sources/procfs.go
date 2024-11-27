@@ -144,17 +144,17 @@ func (s *lustreProcFsSource) generateOSTMetricTemplates(filter string) {
 			{"tot_pending", "exports_pending_total", "Total number of exports that have been marked pending", counterMetric, false, core},
 		},
 		"osd-*/*-OST*": {
-			{"blocksize", "blocksize_bytes", "Filesystem block size in bytes", gaugeMetric, false, core},
+			//{"blocksize", "blocksize_bytes", "Filesystem block size in bytes", gaugeMetric, false, core},
 			{"brw_stats", "pages_per_bulk_rw_total", pagesPerBlockRWHelp, counterMetric, false, extended},
 			{"brw_stats", "discontiguous_pages_total", discontiguousPagesHelp, counterMetric, false, extended},
 			{"brw_stats", "disk_io", diskIOsInFlightHelp, gaugeMetric, false, core},
 			{"brw_stats", "io_time_milliseconds_total", ioTimeHelp, counterMetric, false, core},
 			{"brw_stats", "disk_io_total", diskIOSizeHelp, counterMetric, false, core},
-			{"filesfree", "inodes_free", "The number of inodes (objects) available", gaugeMetric, false, core},
-			{"filestotal", "inodes_maximum", "The maximum number of inodes (objects) the filesystem can hold", gaugeMetric, false, core},
-			{"kbytesfree", "free_kibibytes", "Number of kibibytes free in the pool", gaugeMetric, false, core},
-			{"kbytesavail", "available_kibibytes", "Number of kibibytes readily available in the pool", gaugeMetric, false, core},
-			{"kbytestotal", "capacity_kibibytes", "Capacity of the pool in kibibytes", gaugeMetric, false, core},
+			//{"filesfree", "inodes_free", "The number of inodes (objects) available", gaugeMetric, false, core},
+			//{"filestotal", "inodes_maximum", "The maximum number of inodes (objects) the filesystem can hold", gaugeMetric, false, core},
+			//{"kbytesfree", "free_kibibytes", "Number of kibibytes free in the pool", gaugeMetric, false, core},
+			//{"kbytesavail", "available_kibibytes", "Number of kibibytes readily available in the pool", gaugeMetric, false, core},
+			//{"kbytestotal", "capacity_kibibytes", "Capacity of the pool in kibibytes", gaugeMetric, false, core},
 		},
 	}
 	for path := range metricMap {
