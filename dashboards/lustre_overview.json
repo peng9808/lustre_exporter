@@ -1,4 +1,14 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],	
   "annotations": {
     "list": [
       {
@@ -26,7 +36,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -90,7 +100,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "count(sum(lustre_job_stats_total{job=~\"$server.*.*\"}) by (jobid))",
           "format": "time_series",
@@ -112,7 +122,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "Metadata operations per filesystem-type of operation\n\n- Which metadata filesystem has more IOPS?\n- What kind of metadata operation is causing the load?",
       "fill": 1,
@@ -167,7 +177,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "sum(rate(lustre_stats_total{target=~\"$fs.*\"}[120s])) by (operation)",
           "format": "time_series",
@@ -179,7 +189,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "sum(rate(lustre_stats_total{target=~\"$fs.*\"}[120s]))",
           "format": "time_series",
@@ -228,7 +238,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "* Left (thick lines): IOPS per server\n* Right (thin lines): overall CPU load as %\n\n- Which server is getting saturated in terms of CPU?\n- Is it because of the high number of IOPS associated to the server?",
       "fill": 0,
@@ -289,7 +299,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "sum(rate(lustre_stats_total{component=\"mdt\",job=~\"$server.*\"}[120s])) by (job)",
           "format": "time_series",
@@ -301,7 +311,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "100*(1-avg by (instance)(irate(node_cpu{mode=\"idle\",instance=~\"$server.*\"}[2m])))",
           "format": "time_series",
@@ -351,7 +361,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "* Above 0: Write data bandwidth per filesystem and aggregated\n* Below 0: Read data bandwidth per filesystem and aggregated\n\n* Are there high data bursts?\nNote: \n* max performance for fs1 is xx GB/s\n* max performance for fs2 is yy GB/s",
       "fill": 3,
@@ -403,7 +413,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "sum(rate(lustre_write_bytes_total{target=~\"$fs.*\"}[2m])) by (component)",
           "format": "time_series",
@@ -415,7 +425,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "-sum(rate(lustre_read_bytes_total{target=~\"$fs.*\"}[2m])) by (component) ",
           "format": "time_series",
@@ -427,7 +437,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "-sum(rate(lustre_read_bytes_total{component=\"ost\"}[2m]))",
           "format": "time_series",
@@ -439,7 +449,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "sum(rate(lustre_write_bytes_total{component=\"ost\"}[2m]))",
           "format": "time_series",
@@ -490,7 +500,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "* Above 0: Write data bandwidth per server\n* Below 0: Read data bandwidth per server\n\n* Are all servers equally loaded?\n* Is there any kind of operation generating more load?",
       "fill": 1,
@@ -535,7 +545,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "sum(rate(lustre_write_bytes_total{job=~\"$server.*\"}[2m])) by (job)",
           "format": "time_series",
@@ -547,7 +557,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "-sum(rate(lustre_read_bytes_total{job=~\"$server.*\"}[2m])) by (job)",
           "format": "time_series",
@@ -598,7 +608,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "* Above 0: Write data IOPS per filesystem and overall\n* Below 0: Read data IOPS per filesystem and overall\n\n- The more IOPS the more CPU load and latency. \n- High IOPS, low bandwidth usually means small IO patterns (not great)",
       "fill": 3,
@@ -650,7 +660,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "sum(rate(lustre_write_samples_total{target=~\"$fs.*-OST00.*\"}[2m])) by (component)",
           "format": "time_series",
@@ -662,7 +672,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "-sum(rate(lustre_read_samples_total{target=~\"$fs.*-OST00.*\"}[2m])) by (component)",
           "format": "time_series",
@@ -675,7 +685,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "sum(rate(lustre_write_samples_total{component=\"ost\"}[2m]))",
           "format": "time_series",
@@ -687,7 +697,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "-sum(rate(lustre_read_samples_total{component=\"ost\"}[2m]))",
           "format": "time_series",
@@ -735,7 +745,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fill": 0,
       "fillGradient": 0,
@@ -779,7 +789,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "(1-(lustre_free_kibibytes{job=~\"$server.*\"}/lustre_capacity_kibibytes{job=~\"$server.*\"}))*100",
@@ -830,7 +840,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "description": "* Above 0: Write data iops per server\n* Below 0:  Read data iops per server\n\n* Right side (thin lines): CPU load per server\n\n* Usually the more IOPS the more CPU load",
       "fill": 0,
@@ -889,7 +899,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "-sum(rate(lustre_write_samples_total{job=~\"$server.*\"}[2m])) by (job)",
           "format": "time_series",
@@ -902,7 +912,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "-sum(rate(lustre_read_samples_total{job=~\"$server.*\"}[2m])) by (job)",
           "format": "time_series",
@@ -914,7 +924,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "sum(rate(lustre_write_samples_total{job=~\"$server.*\"}[2m]) + rate(lustre_read_samples_total{job=~\"$server.*\"}[2m])) by (job)",
           "format": "time_series",
@@ -926,7 +936,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "100*(1-avg by (instance)(irate(node_cpu{mode='idle',instance=~'$server.*'}[2m])))",
           "format": "time_series",
@@ -977,7 +987,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fill": 0,
       "fillGradient": 0,
@@ -1021,7 +1031,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "(1 - (lustre_inodes_free{job=~\"$server.*\"}/lustre_inodes_maximum{job=~\"$server.*\"}))*100",
           "format": "time_series",
@@ -1071,7 +1081,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -1115,7 +1125,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "topk(10,sum(rate(lustre_job_stats_total{job=~\"$server.*\"}[2m])) by (jobid))",
           "format": "time_series",
@@ -1165,7 +1175,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -1209,7 +1219,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "topk(10,sum(lustre_job_stats_total{job=~\"$server.*\"}) by (jobid))",
           "format": "time_series",
@@ -1259,7 +1269,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -1304,7 +1314,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "-topk(20,sum(rate(lustre_job_read_bytes_total{job=~\"$server.*\"}[2m])) by (jobid))",
           "format": "time_series",
@@ -1317,7 +1327,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "topk(20,sum(rate(lustre_job_write_bytes_total{job=~\"$server.*\"}[2m])) by (jobid))",
           "format": "time_series",
@@ -1367,7 +1377,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -1411,7 +1421,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "-topk(20,sum(lustre_job_read_bytes_total{job=~\"$server.*\"}) by (jobid))",
           "format": "time_series",
@@ -1424,7 +1434,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "expr": "topk(20,sum(lustre_job_write_bytes_total{job=~\"$server.*\"}) by (jobid))",
           "format": "time_series",
@@ -1482,7 +1492,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "",
         "hide": 0,
@@ -1509,7 +1519,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+          "uid": "${DS_PROMETHEUS}"
         },
         "definition": "",
         "hide": 0,

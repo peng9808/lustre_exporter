@@ -1,4 +1,14 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -33,7 +43,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -92,7 +102,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "builder",
           "exemplar": false,
@@ -108,7 +118,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -157,7 +167,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -176,7 +186,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -229,7 +239,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -248,7 +258,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -326,7 +336,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -345,7 +355,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -423,7 +433,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "lustre_capacity_kibibytes{component=\"ost\"} - lustre_available_kibibytes{component=\"ost\"}",
@@ -438,7 +448,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -487,7 +497,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "lustre_capacity_kibibytes{component=\"ost\"} - lustre_available_kibibytes{component=\"ost\"}",
@@ -502,7 +512,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -549,7 +559,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "lustre_inodes_maximum{component=\"ost\"}",
@@ -564,7 +574,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -615,7 +625,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "builder",
           "expr": "lustre_inodes_free{component=\"ost\"}",
@@ -630,7 +640,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -706,7 +716,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "disableTextWrap": false,
           "editorMode": "builder",
@@ -725,7 +735,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -801,7 +811,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "lustre_inodes_maximum{component=\"ost\"} - lustre_inodes_free{component=\"ost\"}",
@@ -816,7 +826,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+        "uid": "${DS_PROMETHEUS}"
       },
       "fieldConfig": {
         "defaults": {
@@ -867,7 +877,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "d756ac2a-7c3c-426a-8fce-aaac3ab8a8ea"
+            "uid": "${DS_PROMETHEUS}"
           },
           "editorMode": "code",
           "expr": "lustre_inodes_maximum{component=\"ost\"} - lustre_inodes_free{component=\"ost\"}",
