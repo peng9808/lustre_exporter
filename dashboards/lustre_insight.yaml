@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: lustre-metrics
+  namespace: lustre
+  labels:
+    app: lustre-metrics  # 添加 app 标签
+spec:
+  type: ClusterIP
+  clusterIP: None  # 这个 Service 只是为了 Endpoint，不分配集群 IP
+
+  ports:
+    - name: metrics
+      port: 9169
+      targetPort: 9169
+      protocol: TCP
+
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: lustre-metrics
+  namespace: lustre
+subsets:
+  - addresses:
+      - ip: 10.193.78.31  # 你的外部应用 IP
+      - ip: 10.193.78.32
+    ports:
+      - name: metrics
+        port: 9169
+        protocol: TCP
+
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: lustre-metrics
+  namespace: lustre
+  labels:
+    app: lustre-metrics
+    operator.insight.io/managed-by: insight
+spec:
+  endpoints:
+    - port: metrics
+      interval: 30s
+      honorLabels: true
+  namespaceSelector:
+    matchNames:
+      - lustre
+  selector:
+    matchLabels:
+      app: lustre-metrics
